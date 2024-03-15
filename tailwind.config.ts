@@ -15,7 +15,10 @@ const config: Config = {
       },
       colors: {
         "header": "#fff",
-        "footer": "#fff"
+        "footer": "#fff",
+        "main": "#fff",
+        "main-primary": "#fff",
+        "main-secondary": "#efefef",
       },
     },
   },
