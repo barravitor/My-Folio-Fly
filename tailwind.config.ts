@@ -19,7 +19,7 @@ const config: Config = {
         "main": "#fff",
         "main-primary": "#fff",
         "main-secondary": "#efefef",
-      },
+      }
     },
   },
   plugins: []

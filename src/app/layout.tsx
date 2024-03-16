@@ -5,7 +5,7 @@ import "@/app/ui/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Portfólio",
+  title: "My Folio Fly",
   description: "Gerenciador de Portfólio",
 };
 

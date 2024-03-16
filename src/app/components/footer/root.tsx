@@ -6,13 +6,13 @@ interface SocialMediaProps {
 
 export default function Root({ children }: SocialMediaProps) {
 	return (
-		<footer className="bg-footer">
+		<footer className="bg-footer select-none">
 			<div className="w-full h-16 pl-4 pr-4 pt-2 grid grid-cols-1">
 				<hr className="border-gray-400" />
 
 				<div className="flex justify-between">
 					<span className="text-sm text-gray-900">
-						© 2024 <a href="http://localhost:3000" className="hover:underline">Portfólio™</a>. All Rights Reserved.
+						© 2024 <a href="http://localhost:3000" className="hover:underline">My Folio Fly™</a>. All Rights Reserved.
 					</span>
 					<div className="flex gap-1">{children}</div>
 				</div>

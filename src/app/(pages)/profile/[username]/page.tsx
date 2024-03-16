@@ -6,6 +6,8 @@ import Image from "next/image";
 // Component's
 import HeaderComponent from '@/app/components/header/header';
 import { FooterComponent } from '@/app/components/footer';
+import { ProjectCardComponent } from '@/app/components/project-card';
+import { Project } from '@/app/components/project-card/root';
 
 interface PortfolioProps {
     params: {
@@ -26,7 +28,18 @@ const socialMedias: SocialMedia[] = [{
     icon: Facebook
 }];
 
-const profile: any = {
+interface Profile {
+    fullName: string,
+    slog: string,
+    about: string,
+    photoUrl: string,
+    phoneNumber: string,
+    emailAddress: string,
+    address: string,
+    projects?: Project[]
+}
+
+const profile: Profile = {
     fullName: 'Edson Vitor',
     slog: 'Desenvolvedor Pleno | React, JavaScript, NodeJs, Angular',
     about: `Bem-vindo ao meu mundo! Sou um indivíduo apaixonado pela vida, em busca constante de crescimento pessoal e desenvolvimento. Navegar por este campo é adentrar nos recantos da minha mente, onde minhas paixões, interesses e experiências se entrelaçam para formar a tapeçaria única que sou.<br/><br/>
@@ -38,16 +51,36 @@ const profile: any = {
     phoneNumber: '119547354027',
     emailAddress: 'email@email.com.br',
     address: 'Rua das flores, número 381, barueri - SP, Brasil',
-    projects: [{
+    projects: [
+    {
         image: 'https://avatars.githubusercontent.com/u/25044660',
         name: "Portfólio",
-        description: ` 1 - Bem-vindo ao meu mundo! Sou um indivíduo apaixonado pela vida, em busca constante de crescimento pessoal e desenvolvimento. Navegar por este campo é adentrar nos recantos da minha mente, onde minhas paixões, interesses e experiências se entrelaçam para formar a tapeçaria única que sou.<br/><br/>
-        Sou um eterno aprendiz, sempre sedento por conhecimento e novas descobertas. Desde os meus primeiros passos até as minhas conquistas mais recentes, cada experiência moldou quem sou hoje. Sou fascinado pela diversidade cultural, pela criatividade humana e pelas maravilhas da natureza, e é nesse contexto que encontro inspiração para meus pensamentos e ações.<br/><br/>`,
+        description: ` 1 - Bem-vind`,
+        sourceUrl: 'https://github.com/barravitor/portfolio',
+        deployUrl: 'https://github.com/barravitor/portfolio',
+        technologies: ['NextJs', 'ReactJs', 'TypeScript']
+    } 
+    , {
+        image: 'https://firebasestorage.googleapis.com/v0/b/my-folio-fly.appspot.com/o/ewe432131278dasdaewq.png?alt=media&token=24b0630f-3bea-4793-83d0-09e0f032b05c',
+        name: "To do List",
+        description: `App para adicionar uma lista de tarefas`,
+        sourceUrl: 'https://github.com/barravitor/to-do-list',
+        deployUrl: 'https://to-do-list-barravitor.vercel.app',
+        technologies: ['TypeScript', 'ReactJs', 'NextJs']
     }, {
         image: 'https://avatars.githubusercontent.com/u/25044660',
         name: "Encriptogrador de texto",
-        description: ` 2 - Bem-vindo ao meu mundo! Sou um indivíduo apaixonado pela vida, em busca constante de crescimento pessoal e desenvolvimento. Navegar por este campo é adentrar nos recantos da minha mente, onde minhas paixões, interesses e experiências se entrelaçam para formar a tapeçaria única que sou.<br/><br/>
-        Sou um eterno aprendiz, sempre sedento por conhecimento e novas descobertas. Desde os meus primeiros passos até as minhas conquistas mais recentes, cada experiência moldou quem sou hoje. Sou fascinado pela diversidade cultural, pela criatividade humana e pelas maravilhas da natureza, e é nesse contexto que encontro inspiração para meus pensamentos e ações.<br/><br/>`,
+        description: ` 2 - Bem-vindo ao meu mundo! Sou um indivíduo apaixonado pela vida, em busca constante de crescimento pessoal e desenvolvimento. Navegar por este campo é adentrar nos recantos da minha mente, onde minhas paixões, interesses e experiências se entrelaçam para formar a tapeçaria única que sou`,
+        technologies: ['AngularJs', 'TypeScript', 'CSS', 'NextJs', 'ReactJs', 'AngularJs', 'TypeScript', 'CSS', 'NextJs', 'ReactJs']
+    }, {
+        image: 'https://avatars.githubusercontent.com/u/25044660',
+        name: "Portfólio",
+        description: `Bem-vindo ao meu mundo! Sou um indivíduo apaixonado pela vida, em busca constante de crescimento pessoal e desenvolvimento. Navegar por este campo é adentrar nos recantos da minha mente, onde minhas paixões, interesses e experiências se entrelaçam para formar a tapeçaria única que sou.<br/><br/>
+        Sou um eterno aprendiz, sempre sedento por conhecimento e novas descobertas. Desde os meus primeiros passos até as minhas conquistas mais recentes, cada experiência moldou quem sou hoje. Sou fascinado pela diversidade cultural, pela criatividade humana e pelas maravilhas da natureza, e é nesse contexto que encontro inspiração para meus pensamentos e ações.<br/><br/>
+        Minha jornada é marcada por uma busca incessante pela autenticidade e pelo significado. Valorizo profundamente as conexões humanas genuínas e o poder das relações interpessoais para transformar vidas. Acredito no potencial ilimitado do ser humano para criar, inovar e impactar positivamente o mundo ao nosso redor.<br/><br/>
+        Este campo é mais do que um simples reflexo de quem sou; é um convite para explorar junto comigo os mistérios da existência, os desafios da vida e as alegrias da descoberta. Aqui, compartilho minhas reflexões, minhas aspirações e minhas experiências, na esperança de que possamos inspirar e ser inspirados mutuamente.<br/><br/>
+        Então, bem-vindo ao meu campo! Vamos embarcar juntos nesta jornada de autoconhecimento, crescimento e realização. Juntos, podemos explorar os limites do que é possível e criar um futuro repleto de significado e propósito.<br/><br/>`,
+        technologies: ['AngularJs', 'TypeScript']
     }]
 };
 
@@ -104,50 +137,17 @@ export default function Portfolio({ params: { username } }: PortfolioProps) {
                     </section>
                 ) : null}
 
-                <section className='bg-main-primary min-h-72 w-full pl-28 pr-28'>
-                    <div className='min-h-72 flex flex-col gap-2'>
-                        { profile.projects?.map((element: any, index: number) => {
-                            return (
-                                <article className='grid grid-cols-1 bg-gray-400 overflow-hidden gap-2 lg:grid-cols-4 ms:grid-cols-2' key={index}>
-                                    <div className='flex justify-center'>
-                                        <div className='bg-white justify-center col-span-1 items-center'>
-                                            <Image src={element.image} width={1920} height={1080} className="size-64" alt={`Image of project number: ${index++}`} />
-                                        </div>
-                                    </div>
-                                    <div className='flex flex-col justify-center col-span-1 align-middle lg:col-span-3'>
-                                        <span>{element.name}</span>
-                                        <span>{element.description}</span>
-                                    </div>
-                                </article>
-                            )
-                        })}
-                    </div>
-                </section>
-
-
-                <section className='h-96 w-full bg-red-500 pl-5 pr-5'>
-
-                </section>
-
-                <section className='h-96 w-full bg-red-300 pl-5 pr-5'>
-
-                </section>
-
-                <section className='h-96 w-full bg-red-700 pl-5 pr-5'>
-
-                </section>
-
-                {/* <Link key='home' href="/">
-                    <p className="hidden md:block">Voltar com a tag (LINK)</p>
-                </Link>
-                
-                <a href="/">
-                    <p className="hidden md:block">Voltar com a tag (A)</p>
-                </a> */}
+                { profile.projects ? (
+                    <section className='bg-main-primary min-h-72 w-full pt-2 pl-4 pr-4 md:pl-28 md:pr-28'>
+                        <div className='min-h-72 grid grid-cols-1 gap-2 xl:grid-cols-2'>
+                            { profile.projects?.map((element: Project, index: number) => <ProjectCardComponent.Root project={element} key={index} />)}
+                        </div>
+                    </section>
+                ) : null }
             </main>
 
             <FooterComponent.Root>
-                {socialMedias.map((element: SocialMedia, index: number) => {
+                { socialMedias.map((element: SocialMedia, index: number) => {
                     return (
                         <FooterComponent.SocialMedia href={element.url} target='_blank' key={index}>
                             <FooterComponent.Icon
@@ -156,7 +156,7 @@ export default function Portfolio({ params: { username } }: PortfolioProps) {
                                 className="text-gray-900 fill-gray-900 hover:text-gray-300 hover:fill-gray-300" />
                         </FooterComponent.SocialMedia>
                     )
-                })}
+                }) }
             </FooterComponent.Root>
         </>
     );
